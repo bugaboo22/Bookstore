@@ -17,24 +17,13 @@ import com.example.Bookstore.web.BookController;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class BookstoreApplicationTests {
+public class BookstoreApplicationTest {
 	
 	@Autowired
 	private BookController controller;
-	
-	
+		
 	@Test
 	 public void contextLoads() throws Exception {
 	 assertThat(controller).isNotNull();
-	 }
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
+	 }		
 }

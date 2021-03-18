@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
 import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
 import com.example.Bookstore.domain.Category;
@@ -20,7 +21,7 @@ import com.example.Bookstore.domain.UserRepository;
 import com.example.Bookstore.web.BookController;
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest
+@SpringBootTest
 public class BookRepositoryTest {
 	
 	@Autowired
@@ -46,12 +47,12 @@ public class BookRepositoryTest {
 	public void deleteBook() {
 		brepository.deleteAll();
 	    assertThat(brepository.count()).isEqualTo(0);
-	    assertThat(crepository.count()).isEqualTo(2);
+	    assertThat(crepository.count()).isEqualTo(3);
 	}
 	
 	@Test
 	public void addBook() {
-		Book book = new Book("Mikki", "Hiiri", "mh@mouse.com", "2020", new Category("Cheese"));
+		Book book = new Book("Mikki", "Hiiri", "mh@mouse.com", "2020", crepository.findByName("Fantasy").get(0));
 		brepository.save(book);
 		assertThat(book.getId()).isNotNull();
 	}

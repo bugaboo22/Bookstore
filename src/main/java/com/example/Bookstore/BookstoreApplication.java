@@ -26,11 +26,12 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner Bookdemo(BookRepository brepository, CategoryRepository crepository, UserRepository urepository ) {
 		return (args) -> {
-			
+			crepository.deleteAll();
 			crepository.save(new Category("Fantasy"));
 			crepository.save(new Category("Horror"));
 			crepository.save(new Category("WW2"));
 			
+			brepository.deleteAll();
 			brepository.save(new Book("13423-312", "Miika Vähänen", "Miika ihmemaassa", "2020", crepository.findByName("Fantasy").get(0)));
 			brepository.save(new Book("13423-313", "Pekka Pekkanen", "Pekka töpöhäntä", "2020", crepository.findByName("Horror").get(0)));
 			brepository.save(new Book("13423-314", "Pauli Paulinen", "Paulin lihapullat", "2020", crepository.findByName("WW2").get(0)));
